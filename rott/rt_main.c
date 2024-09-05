@@ -79,6 +79,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "vgatext.h"
 
+#include <emscripten.h>
+
 volatile int    oldtime;
 volatile int    gametime;
 
@@ -152,6 +154,8 @@ int main (int argc, char *argv[])
     extern char *BATTMAPS, *ROTTMAPS;
 	_argc = argc;
 	_argv = argv;
+
+   emscripten_set_main_loop(GameLoop, 0, 0);
 
    ApogeePath = GetPrefDir();
 

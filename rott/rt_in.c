@@ -442,6 +442,7 @@ static void sdl_handle_events(void)
 //******************************************************************************
 void IN_PumpEvents(void)
 {
+   SDL_Delay(1);
    sdl_handle_events();
 }
 
