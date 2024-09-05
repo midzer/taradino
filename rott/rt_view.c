@@ -399,7 +399,7 @@ void DrawCPUJape
    int height;
 
    CurrentFont = tinyfont;
-   VW_MeasurePropString( YourComputerSucksString, &width, &height );
+   VW_MeasurePropString( YourComputerSucksString, &width, &height, CurrentFont );
 
    DrawGameString( 160 - width / 2, 100 + 48 / 2 + 2,
       YourComputerSucksString, true );

@@ -329,7 +329,7 @@ void VW_MeasureIntensityPropString (const char *string, int *width, int *height)
 //
 //******************************************************************************
 
-void VW_MeasurePropString (const char *string, int *width, int *height)
+void VW_MeasurePropString (const char *string, int *width, int *height, font_t * CurrentFont)
 {
    VWL_MeasureString (string, width, height, CurrentFont);
 }

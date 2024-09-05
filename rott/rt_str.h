@@ -76,7 +76,7 @@ void VW_DrawClippedString (int x, int y, const char *string);
 void US_ClippedPrint (int x, int y, const char *s);
 
 void VWB_DrawPropString  (const char *string);
-void VW_MeasurePropString (const char *string, int *width, int *height);
+void VW_MeasurePropString (const char *string, int *width, int *height, font_t *CurrentFont);
 
 void US_MeasureStr(int *width, int *height, const char *s, ...) PRINTF_ATTR(3, 4);
 

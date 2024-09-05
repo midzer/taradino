@@ -510,7 +510,7 @@ void DrawPlayScreen (boolean bufferofsonly)
       // Draw player's name
       DrawGameString ( MEN_X + 3, MEN_Y + 2, Names[ character ], bufferofsonly );
 
-      VW_MeasurePropString( LastNames[ character ], &width, &height );
+      VW_MeasurePropString( LastNames[ character ], &width, &height, CurrentFont );
 
       DrawGameString ( MEN_X + 44 - width, MEN_Y + 8,
          LastNames[ character ], bufferofsonly );
@@ -604,12 +604,12 @@ void GetShortCodeName
 
    // Shorten name to fit
    length = strlen( dest );
-   VW_MeasurePropString( dest, &width, &height );
+   VW_MeasurePropString( dest, &width, &height, CurrentFont );
    while( width > maxwidth )
       {
       dest[ length ] = 0;
       length--;
-      VW_MeasurePropString( dest, &width, &height );
+      VW_MeasurePropString( dest, &width, &height, CurrentFont );
       }
    }
 
@@ -2765,7 +2765,7 @@ void DrawHighScores (void)
       //
       ultoa(s->score,buffer,10);
 
-      VW_MeasurePropString (buffer, &w, &h);
+      VW_MeasurePropString (buffer, &w, &h, CurrentFont);
       PrintX = (33 * 8) - w;
       DrawMenuBufPropString (PrintX, PrintY, buffer);
    }
@@ -2944,7 +2944,7 @@ void DrawEOLHeader
          break;
       }
 
-   VW_MeasurePropString( string, &w, &h );
+   VW_MeasurePropString( string, &w, &h, CurrentFont );
 
    px = ( 320 - w ) / 2;
    py = 10;
@@ -2952,7 +2952,7 @@ void DrawEOLHeader
 
    // draw episode number
    string = "EPISODE";
-   VW_MeasurePropString( string, &w, &h );
+   VW_MeasurePropString( string, &w, &h, CurrentFont );
    px = HEADERX - w;
    py = 25;
    VWB_DrawPropString( string );
@@ -2984,7 +2984,7 @@ void DrawEOLHeader
       string = "AREA";
       }
 
-   VW_MeasurePropString( string, &w, &h);
+   VW_MeasurePropString( string, &w, &h, CurrentFont);
    px = HEADERX - w;
    VWB_DrawPropString( string );
 
@@ -2995,7 +2995,7 @@ void DrawEOLHeader
       }
 
    string = "SCORE";
-   VW_MeasurePropString( string, &w, &h);
+   VW_MeasurePropString( string, &w, &h, CurrentFont);
    px = HEADERX - w;
    py = 45;
    VWB_DrawPropString( string );
@@ -3005,7 +3005,7 @@ void DrawEOLHeader
 	VWB_DrawPropString( tempstr );
 
    string = "HEALTH";
-   VW_MeasurePropString( string, &w, &h );
+   VW_MeasurePropString( string, &w, &h, CurrentFont );
    px = HEADERX - w;
    py = 55;
    VWB_DrawPropString( string );
@@ -3031,7 +3031,7 @@ void DrawEOLHeader
    itoa(gamestate.secrettotal,&(str2[0]),10);
    strcat(str1,str2);
    string = "SECRET WALLS";
-   VW_MeasurePropString( string, &w, &h );
+   VW_MeasurePropString( string, &w, &h, CurrentFont );
    px = HEADERX - w;
    py = 65;
    VWB_DrawPropString( string );
@@ -3069,7 +3069,7 @@ void DrawEndBonus
       }
 
    VWB_TBar( 5, EndBonusStartY + 2, 310, 10 );
-   VW_MeasurePropString( string, &w, &h );
+   VW_MeasurePropString( string, &w, &h, CurrentFont );
 
    py = EndBonusStartY;
    if ( bonusstring == NULL )
@@ -3083,7 +3083,7 @@ void DrawEndBonus
       VWB_DrawPropString( string );
 
       EndBonusNumBonuses++;
-      VW_MeasurePropString( bonusstring, &w, &h );
+      VW_MeasurePropString( bonusstring, &w, &h, CurrentFont );
       px = 310 - w;
       py = EndBonusStartY;
       VWB_DrawPropString( bonusstring );
@@ -4003,7 +4003,7 @@ void BattleLevelCompleted ( int localplayer )
 
          sprintf ( text, "Page %d of 3.  Use arrows to switch stats.  "
             "Press Esc to quit.", Screen );
-         VW_MeasurePropString ( text, &w, &h);
+         VW_MeasurePropString ( text, &w, &h, CurrentFont);
          py = 192;
          px = ( 320 - w ) / 2;
          VWB_DrawPropString ( text );

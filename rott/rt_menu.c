@@ -2289,8 +2289,8 @@ int HandleMenu (CP_iteminfo *item_i, CP_itemtype *items, void (*routine)(int w))
    switch (exit)
    {
       case 1:
-         if ((items+handlewhich)->routine.v!=NULL)
-            (items+handlewhich)->routine.vi(0);
+         if ((items+handlewhich)->routine.vv!=NULL)
+            (items+handlewhich)->routine.vv();
          return (handlewhich);
 
       case 2:
@@ -5654,7 +5654,7 @@ boolean SliderMenu
    PrintY = 62;
    DrawMenuBufPropString( PrintX, PrintY, left );
 
-   VW_MeasurePropString( right, &width, &height );
+   VW_MeasurePropString( right, &width, &height, CurrentFont );
    DrawMenuBufPropString( 263 - width, PrintY, right );
 
    block = W_GetNumForName( blockname );
@@ -6225,7 +6225,7 @@ void DrawOptionDescription( char ** options, int w )
 
    string = options[ w ];
 
-	VW_MeasurePropString ( string, &width, &height );
+	VW_MeasurePropString ( string, &width, &height, CurrentFont );
    DrawMenuBufPropString ( ( 288 - width) / 2, 4, string );
 
    CurrentFont = temp;
@@ -6428,7 +6428,7 @@ void DrawBattleModeName( int which )
    temp = CurrentFont;
    CurrentFont = tinyfont;
 
-	VW_MeasurePropString ( string, &width, &height );
+	VW_MeasurePropString ( string, &width, &height, CurrentFont );
    DrawMenuBufPropString ( ( 288 - width ) / 2, 4, string );
 //   DrawMenuBufPropString ( 270-width, 4, string );
 
@@ -6485,7 +6485,7 @@ void DrawBattleModeDescription( int w )
          }
    #endif
 
-	VW_MeasurePropString ( string, &width, &height );
+	VW_MeasurePropString ( string, &width, &height, CurrentFont );
    DrawMenuBufPropString ( ( 288 - width ) / 2, 4, string );
 
    CurrentFont = temp;
@@ -6531,6 +6531,7 @@ void CP_BattleModes ( void )
 
    do
       {
+      SDL_Delay(1);
       which = HandleMenu( &ModeItems, &ModeMenu[ 0 ],
          DrawBattleModeDescription );
       }
@@ -6654,7 +6655,7 @@ void DrawColorMenu( void )
    CurrentFont = smallfont;
 
    text = colorname[ locplayerstate->uniformcolor ];
-   VW_MeasurePropString ( text, &width, &height );
+   VW_MeasurePropString ( text, &width, &height, CurrentFont );
    DrawMenuBufPropString ( ( 320 - width ) / 2 - 16, MENU_Y + 5, text );
    DisplayInfo( 8 );
    EraseMenuBufRegion( COLORX, COLORY, COLORW, COLORH );
@@ -6753,7 +6754,7 @@ int ColorMenu
 
          EraseMenuBufRegion( 0, MENU_Y + 5, 200, 10 );
          EraseMenuBufRegion( COLORX, COLORY, COLORW, COLORH );
-         VW_MeasurePropString( text, &width, &height );
+         VW_MeasurePropString( text, &width, &height, CurrentFont );
          DrawMenuBufPropString( ( 320 - width ) / 2 - 16, MENU_Y + 5, text );
          DrawTMenuBufBox( COLORX, COLORY, COLORW, COLORH );
          DrawColoredMenuBufItem( COLORX - 36, COLORY - 33,
@@ -7914,7 +7915,7 @@ void ShowBattleOptions
 
    strcpy( text, "CURRENT OPTIONS FOR " );
    strcat( text, BattleModeNames[ gamestate.battlemode - battle_Normal ] );
-	VW_MeasurePropString ( text, &width, &height );
+	VW_MeasurePropString ( text, &width, &height, CurrentFont );
    if ( inmenu )
       {
       temp = 288;
@@ -8137,7 +8138,7 @@ void SetMenuHeader
    EraseMenuBufRegion( 16, 0, 256, 16 );
 
    CurrentFont = tinyfont;
-   VW_MeasurePropString ( header, &width, &height );
+   VW_MeasurePropString ( header, &width, &height, CurrentFont );
    DrawMenuBufPropString ( ( 288 - width ) / 2, 4, header );
 
    RefreshMenuBuf( 0 );
